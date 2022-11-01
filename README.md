@@ -1,6 +1,6 @@
-# React Sore
+# React Sore &#127873;
 
-##### Web application with selection of products and orders
+### Web application with selection of products and orders
 
 **Installing:**
 
@@ -17,7 +17,7 @@ $ yarn start
 - **ReactJS 18**
 - **React Hooks**
 - **Redux Toolkit** (state manager)
-- **Axios + fetch** (for request to backend)
+- **Axios** (for requests to backend)
 - **Prettier** (formatting code)
 - **Webpack**
 - **React Router v6**

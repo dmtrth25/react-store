@@ -13,9 +13,7 @@ export const store = configureStore({
   },
 })
 
-export type RootState = ReturnType<typeof store.getState> // RootState - глобальный стейт
-// вытащи getState - оно вернет все хранилище - простой дай нам тип
-// ReturnType - Дай нам функцию и я ее содержимое сделаю типом
+export type RootState = ReturnType<typeof store.getState>
 
-type AppDispatch = typeof store.dispatch // Возьми тип и преврати его в переменную
-export const useAppDispatch: () => AppDispatch = useDispatch // создали хук в который
+type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch

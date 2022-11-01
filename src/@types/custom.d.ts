@@ -1,4 +1,4 @@
-declare module "*.svg" { // global types
+declare module "*.svg" {
   const content: any;
   export default content;
 }

@@ -2,7 +2,7 @@ export type Pizza = {
   id: string
   title: string
   price: number
-  imageUrl: string  // переместили выше просто и изменили для createSyncThunk тип Pizza[]
+  imageUrl: string
   type: number
   size: number
   count: number

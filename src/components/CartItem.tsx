@@ -20,7 +20,7 @@ export const CartItem: FC<CartItemProps> = ({ id, title, type, size, price, coun
     dispatch(
       setItem({
         id,
-      } as CartItemType), // этот обьект строго как этот тип
+      } as CartItemType)
     );
   };
   const onClickMinus = () => {
@@ -47,7 +47,7 @@ export const CartItem: FC<CartItemProps> = ({ id, title, type, size, price, coun
         <button
           disabled={count === 1}
           onClick={onClickMinus}
-          className='button button--outline button--circle cart__item-count-minus'> {/*передаем класс в clsx и дальше после , ставим обьект где класс будет ключом и его использовать когда будет какое то условие его потом добавит к основному как единая строка когда условие выполнится*/}
+          className='button button--outline button--circle cart__item-count-minus'>
           <svg
             width="10"
             height="10"

@@ -24,7 +24,7 @@ export const ItemBlock: FC<ItemBlockProps> = ({ id, title, price, imageUrl, size
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
-  const addedCount = cartItem ? cartItem.count : 0; // Если в корзине нашелся такой товар
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
     const item: CartItem = {
@@ -32,10 +32,10 @@ export const ItemBlock: FC<ItemBlockProps> = ({ id, title, price, imageUrl, size
       title,
       price,
       imageUrl,
-      type: typesNames[activeType], // брал typeNames и вызывал его в виде строчки
+      type: typesNames[activeType],
       size: sizes[activeSize],
       count: 0
-    }; // Этот обьект будет хранится в корзине - редаксе
+    };
     dispatch(setItem(item));
   };
 
@@ -83,8 +83,7 @@ export const ItemBlock: FC<ItemBlockProps> = ({ id, title, price, imageUrl, size
               />
             </svg>
             <span>Add</span>
-            {addedCount > 0 && <i>{addedCount}</i>}{' '}
-            {/*если больше нуля только тогда рендери правую часть*/}
+            {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>
       </div>

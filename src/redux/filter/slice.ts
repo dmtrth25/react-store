@@ -28,8 +28,8 @@ const filterSlice = createSlice({
       state.currentPage = action.payload
     },
     setFilters(state, action: PayloadAction<FilterSliceState>) {
-      state.currentPage = Number(action.payload.currentPage) // стейт когда придет currentPage то ты должен в action.payload.currentPage вшить то - то есть нам нужно сказать что эти параметры будут вшиваться в эти свойства
-      state.categoriesType = Number(action.payload.categoriesType) // сделаем number
+      state.currentPage = Number(action.payload.currentPage)
+      state.categoriesType = Number(action.payload.categoriesType) 
       state.sort = action.payload.sort
     }
   }

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setSort } from '../redux/filter/slice';
 import { SortPropertyEnum, SortType } from '../redux/filter/types';
 
-export const list: ListItem[] = [ // массив обьектов
+export const list: ListItem[] = [
   { name: 'popular ↓', sortProperty: SortPropertyEnum.RATING_DESC },
   { name: 'popular ↑', sortProperty: SortPropertyEnum.RATING_ASC },
   { name: 'price ↓', sortProperty: SortPropertyEnum.PRICE_DESC },
@@ -24,25 +24,23 @@ type SortPropsType = {
 
 export const Sort: FC<SortPropsType> = memo(({ value }) => {
   const dispatch = useDispatch();
-  const sortRef = useRef<HTMLDivElement>(null); // По умолчанию в useRef мы передаем null | HTMLDivElement. Пишем null если изначально ничего нету
-
   const [open, setOpen] = useState(false);
+  const sortRef = useRef<HTMLDivElement>(null);
 
-  const onSelectedItem = (obj: ListItem) => { // получает обьект из sortItem
+  const onSelectedItem = (obj: ListItem) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => { // Click это MouseEvent
-      if (sortRef.current && !event.composedPath().includes(sortRef.current)) { // просто вместо path should composedPath
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
-    document.body.addEventListener('click', handleClickOutside); // нужно сказать если небыл клик на sort - скрыть окошко
+    document.body.addEventListener('click', handleClickOutside);
+    
     return () => document.body.removeEventListener('click', handleClickOutside);
-
-    // useEffect если сейчас компонент должен исчезнуть из страницы unmountиться то мы должны удалить обработчик body на клик. То есть мы передаем ссылку на создание и удалении функции
   }, []);
 
   return (

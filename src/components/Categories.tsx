@@ -2,15 +2,12 @@ import { FC, memo } from 'react';
 
 type CategoriesProps = {
   value: number
-  onChangeCategory: (i: number) => void // это функция которая принимает определенное количество параметров
-  // void - функция не требует return ничего
-  // если пропсы не поменялись наша функция перерисовки не делает
-  // это к ts мы должны сказать что наша функция получит и что она вернет; void - ничего
+  onChangeCategory: (i: number) => void
 }
 
 const categories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Сlosed'];
 
-export const Categories: FC<CategoriesProps> = memo(({ value, onChangeCategory }) => { // автоматическая типизация пропсов компонента
+export const Categories: FC<CategoriesProps> = memo(({ value, onChangeCategory }) => {
   return (
     <div className="categories">
       <ul>

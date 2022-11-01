@@ -17,5 +17,5 @@ export const Pagination: FC<PaginationProps> = ({ currentPage, onChangePage }) =
     onPageChange={(event) => onChangePage(event.selected + 1)}
     pageRangeDisplayed={4}
     pageCount={3}
-    forcePage={currentPage - 1} // check: React.paginate -> ReactPaginateProps -> forcePage override current page
+    forcePage={currentPage - 1}
   />

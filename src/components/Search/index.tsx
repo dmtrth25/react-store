@@ -1,5 +1,5 @@
 import React, { FC, useState, useRef, useCallback } from 'react';
-import debounce from 'lodash.debounce'; //отложить вызовы АПИ, что бы они не происходили слишком часто
+import debounce from 'lodash.debounce';
 import styles from './Search.module.scss';
 
 import { useDispatch } from 'react-redux';
@@ -8,29 +8,23 @@ import { setSearchValue } from '../../redux/filter/slice';
 export const Search: FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null); // ссылка на инпут
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
     dispatch(setSearchValue(''));
     setValue('');
-    // document.querySelector('input').focus(); // Плохая практика - так нельзя при вводе инпута при клике на крестик фокус остается - лучше использовать useRef
-    // if(inputRef.current) { // исключи null и скажи что должно быть только положительное значение - наведи на current
-    // }
-    inputRef.current?.focus(); // Если нету в current и может быть null ? то тогда не вызывай focus()
-    // Если что то есть ну тогда вызови
+    inputRef.current?.focus();
   };
 
   const updateSearchValue = useCallback(
-    // оптимизируем
     debounce((str: string) => {
-      // при первом рендере создайся и больше не создавайся
-      dispatch(setSearchValue(str)); // передаем уже не в контекст а в dispatch setSearchValue наше str элемент
+      dispatch(setSearchValue(str));
     }, 250),
     [],
   );
 
-  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => { // ts мы должны сказать что event это определенный тип события
-    setValue(event.target.value); // Делаем функцию которая будет отрабатывать на onChange
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
 
@@ -72,7 +66,7 @@ export const Search: FC = () => {
       <input
         ref={inputRef}
         value={value}
-        onChange={onChangeInput} // Отработка
+        onChange={onChangeInput}
         className={styles.input}
         placeholder="Search..."
       />

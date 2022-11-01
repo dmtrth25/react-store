@@ -8,22 +8,19 @@ import { Link, useLocation } from 'react-router-dom';
 import {Search} from './Search';
 
 export const Header: FC = () => {
-  const { items, totalPrice } = useSelector(selectCart); // просто передаем название (селектор в редаксе)
-
+  const { items, totalPrice } = useSelector(selectCart);
   const isMounted = useRef(false)
 
   useEffect(() => {
-    if(isMounted.current) { // нужно проверить компонент был уже отрендерен - если еще не отрендерелся - то не отрабатывай этот код
-      const json = JSON.stringify(items) // В строчку
-      localStorage.setItem('cart', json) // ключом cart устанавливаем наш элемент по которому кликнули (строчку продукта)
-    } // если не отрендерился то скажи что отрендерился isMounted.current = true и уже на второй раз будет true и этот код выполнится
+    if(isMounted.current) {
+      const json = JSON.stringify(items)
+      localStorage.setItem('cart', json)
+    }
     isMounted.current = true
-  }, [items]) // Если меняется items (корзина) - делай перерисовку
-  // Мы скажем если у нас что то меняется в items - то сохранять
-  // Делаем проверку если первый рендер то не сохранять  при первом рендере не должны этого делать
+  }, [items])
 
-  const location = useLocation(); // Вызываем и внутри обьекта есть pathname
-  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0); // Общая сумма
+  const location = useLocation();
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
   
   return (
     <div className="header">

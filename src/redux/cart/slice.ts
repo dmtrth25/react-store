@@ -10,14 +10,14 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setItem(state, action: PayloadAction<CartItem>) { // PayloadAction тип для actions <> указываем что именно
-      const findItem = state.items.find(obj => obj.id === action.payload.id) // Если в стейте items был найден обьект у которого id равен action.payload.id
+    setItem(state, action: PayloadAction<CartItem>) {
+      const findItem = state.items.find(obj => obj.id === action.payload.id)
       if (findItem) {
-        findItem.count++ // сделай count ++ и редакс сделает перерисовку
-      } else { // иначе такого обьекта нету и мы его добавляем в массив
+        findItem.count++
+      } else {
         state.items.push({
-          ...action.payload, // берем все что пришло с компонента
-          count: 1 // и в конец добавляем один елемент - говорим что добавлен только один продукт
+          ...action.payload,
+          count: 1
         })
       }
       state.totalPrice = calcTotalPrice(state.items)
@@ -33,7 +33,7 @@ const cartSlice = createSlice({
     },
     clearItems(state) {
       state.items = []
-      state.totalPrice = 0 // После очистики очищаем тоже
+      state.totalPrice = 0
     }
   }
 })
